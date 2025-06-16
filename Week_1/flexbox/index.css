@@ -1,20 +1,37 @@
-body{
+
+
+.flex-box{
     min-height: 800px;
     display: flex;
-    border: 8px solid black;
     gap:20px;
 
 }
-#box-1{
-    margin-right: auto;
-}
+
 .box{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
-    width: 100px;
     background-color: #0071FF;
     font-size: 40px;
     color: white;
+}
+
+.grid-box{
+    display: grid;
+    height: 100vh;
+    width: 100vh;
+    grid-template-columns: repeat(3,150px);
+    grid-template-rows: repeat(3,150px);
+    gap: 50px;
+    
+}
+
+#box-1{
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+#box-2{
+    grid-row-start: 2;
+    grid-row-end: 6;
 }

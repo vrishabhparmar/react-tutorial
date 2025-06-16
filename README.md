@@ -45,6 +45,35 @@ Allows getting bigger
 
 Allows getting smaller
 
+### Grid 
+
+        Grid is another CSS property which can be used to format the page layout to keep the website
+responsive
+
+### grid-template-column: (column1 column2 column3 .. column12)
+
+We can use different types of grid tempplate setting like each column width in pixels or percentage or even fraction (1fr or 4fr). 
+
+-- minmax(#min-width, #max-width), in this case the container will keep growing when the page size grows and shrink to the min-width
+
+-- repeat(3, #width). This will help us to create 3 container of size width
+
+### grid-start, grid-end:
+
+This sets the start of the grid and end of the grid
+
+### Semantic tags
+
+Three reasons to use Semantic tags
+
+1. Easier to read / scan the HTML
+2. Better for SEO
+3. Better for screen readers / accessibility
+
+### JavaScript ES6+
+
+
+
 
 
 
