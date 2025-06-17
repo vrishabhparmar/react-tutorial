@@ -1,6 +1,6 @@
 # react-tutorial
 
-## Week 1: Core Web & JS Basics 
+## Week 1 & 2: Core Web & JS Basics 
 
 ### Flex box;
 
@@ -71,6 +71,19 @@ Three reasons to use Semantic tags
 3. Better for screen readers / accessibility
 
 ### JavaScript ES6+
+
+check the Script.js file 
+
+
+## Week 3;
+
+### React
+
+
+
+
+
+
 
 
 

@@ -161,8 +161,160 @@ function sum(accumulator, element) {
 
 console.log(addAll);
 
+// Call back
+// It is a situation in javascript where callbacks within other callbacks ot a degree
+// where the code becomes difficult to read. 
+// Old pattern to handle asyshcronous functions 
+// Use Promises + Async/Await to avoid Call back hell.
+
+
+function task1(callback){
+
+    setTimeout(() => {
+        console.log('Task 1 complete');
+        callback();
+    }, 2000);
+
+}
+
+function task2(callback){
+    setTimeout(() => {
+        console.log('Task 2 complete');
+        callback();
+    }, 1500)
+
+    
+}
+
+function task3(callback){
+    setTimeout(() => {
+        console.log('Task 3 complete');
+        callback();
+    }, 2000)
+
+   
+}
+
+function task4(callback){
+    setTimeout(() => {
+        console.log('Task 4 complete');
+        callback();
+    }, 1500)
+
+    
+}
+
+
+// task1(() => {
+//     task2(() => {
+//         task3(() => {
+//             task4(() => {
+//                 console.log('All Task completed');
+//             })
+//         })
+//     })
+// })
+
+// Promises
+
+
+function walkDog(){
+   
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            
+            const dog = true;
+            if(dog){
+                resolve('You walk a Dog');
+            }
+            else{
+                reject(`You didn't walk the dog`);
+            }
+        },1500);
+    });
+}
+
+
+function cleanKithen(){
+    
+
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+
+            const kitchen = true;
+            if(kitchen)
+            {
+                resolve('You clean the kitchen');
+            } 
+            else{
+                reject(`You didn't clean the kitchen`)
+            }
+            
+        },2500);
+    })
+
+    
+}
+
+function takeOutTrash(){
+    
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+
+            const trash = true;
+            if(trash)
+            {
+                resolve('You take out trash');
+            }
+            else{
+                reject(`You didn't take out trash`);
+            }
+            
+        },500);
+    })
+}
+
+// Method Chaining in Promises
+
+// walkDog().then((val) => {console.log(val); return cleanKithen()})
+//         .then((val) => { console.log(val); return takeOutTrash()})
+//         .then((val) => { console.log(val); console.log('All task done')})
+//         .catch((error) => console.log(error));
+
+
 
 // Async / await
+
+// Async: makes the function return a promise 
+// Await; makes the function to wait for the promise
+
+async function doChores(){
+
+   try{
+        const walkTheDog = await walkDog();
+        console.log(walkTheDog);
+
+        const cleanTheKitchen = await cleanKithen();
+        console.log(cleanTheKitchen);
+
+        const takeOutTheTrash = await takeOutTrash();
+        console.log(takeOutTheTrash);
+
+        console.log('All chores were completed!!');
+   }
+   catch(err)
+   {
+        console.error(err);
+   }
+
+
+}
+
+
+doChores();
+
+
+
 
 
 
