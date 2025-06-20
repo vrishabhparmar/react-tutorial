@@ -79,6 +79,17 @@ check the Script.js file
 
 ### React
 
+## TODO APP
+
+Add/Edit/Delete new items to the existing list
+Creates a new List
+Save it somewhere
+
+## Weather APP
+
+Shows weather for location 
+
+Can pin the weather of a location for tracking it.
 
 
 
