@@ -79,6 +79,45 @@ check the Script.js file
 
 ### React
 
+Refer: (Thinking in React) https://react.dev/learn/thinking-in-react
+
+### Managing States 
+
+#### Step 1. Identify your components different visual state
+
+- Empty: Form has a disabled “Submit” button.
+
+- Typing: Form has an enabled “Submit” button.
+
+- Submitting: Form is completely disabled. Spinner is shown.
+
+- Success: “Thank you” message is shown instead of a form.
+
+- Error: Same as Typing state, but with an extra error message.
+
+#### Step 2. Determine what triggers those state changes
+
+You can trigger state updates in response to two kinds of inputs:
+
+- Human inputs, like clicking a button, typing in a field, navigating a link.
+- Computer inputs, like a network response arriving, a timeout completing, an image loading.
+
+In both cases, you must set state variables to update the UI. For the form you’re developing, you will need to change state in response to a few different inputs:
+
+- Changing the text input (human) should switch it from the Empty state to the Typing state or back, depending on whether the text box is empty or not.
+- Clicking the Submit button (human) should switch it to the Submitting state.
+- Successful network response (computer) should switch it to the Success state.
+- Failed network response (computer) should switch it to the Error state with the matching error message.
+
+![Alt text](image.png)
+
+#### Step 3. Represent the State in memory with useState
+
+#### Step 4. Remove any non-essential state variable
+
+#### Step 5. Connect the event handler to the set state
+
+
 ## TODO APP
 
 Add/Edit/Delete new items to the existing list
@@ -90,8 +129,6 @@ Save it somewhere
 Shows weather for location 
 
 Can pin the weather of a location for tracking it.
-
-
 
 
 
