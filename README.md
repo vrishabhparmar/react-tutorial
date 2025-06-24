@@ -118,6 +118,11 @@ In both cases, you must set state variables to update the UI. For the form youâ€
 #### Step 5. Connect the event handler to the set state
 
 
+#### Reducers
+
+
+
+
 ## TODO APP
 
 Add/Edit/Delete new items to the existing list
