@@ -79,6 +79,8 @@ check the Script.js file
 
 ### React
 
+#### React Life cycle.
+
 Refer: (Thinking in React) https://react.dev/learn/thinking-in-react
 
 ### Managing States 
