@@ -122,9 +122,6 @@ In both cases, you must set state variables to update the UI. For the form youâ€
 
 #### Reducers
 
-
-
-
 ## TODO APP
 
 Add/Edit/Delete new items to the existing list
@@ -136,6 +133,8 @@ Save it somewhere
 Shows weather for location 
 
 Can pin the weather of a location for tracking it.
+
+
 
 
 
