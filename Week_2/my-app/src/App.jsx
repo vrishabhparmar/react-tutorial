@@ -6,6 +6,10 @@ import Card from './components/Card'
 import List from './components/List'
 import Users from './components/Users'
 import Counter from './components/Counter'
+import Controlled from './components/Controlled'
+import Uncontrolled from './components/Uncontrolled'
+import Add from './components/Add'
+import ClassComponent from './components/lifecycle/ClassComponent'
 
 
 /**
@@ -25,7 +29,12 @@ function App() {
   return (
     <>
       {/* <Users persons={persons} /> */}
-      <Counter/>
+      {/* <Counter/> */}
+      {/* <Controlled/>
+      <Uncontrolled/>
+      <List/> */}
+      {/* <Add/> */}
+      <ClassComponent/>
     </>
   )
 }
