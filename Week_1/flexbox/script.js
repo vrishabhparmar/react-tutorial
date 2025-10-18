@@ -313,6 +313,28 @@ async function doChores(){
 
 doChores();
 
+// Imperative approach in JS
+// Here you are telling the browser exactly how to 
+/**
+ * 
+ * 1. Create a button
+ * 2. Set Text
+ * Handle clicks
+ * Update text manually
+ */
+const button = document.createElement('button');
+button.textContent = 'Click me';
+button.addEventListener('click', () => {
+    button.textContent='Clicked!';
+});
+document.body.appendChild(button);
+
+
+
+
+
+
+
 
 
 

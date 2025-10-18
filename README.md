@@ -19,7 +19,7 @@ It has additional complex arrangements like Space-between, Space-around, Space-e
 
 ### align-items:(center, end, start,...)
 
-It worls around the cross axis. It helps to place content at the center or end or start of the div (box). Ever row has its own axis. 
+It works around the cross axis. It helps to place content at the center or end or start of the div (box). Ever row has its own axis. 
 
 ### align-content:
 
