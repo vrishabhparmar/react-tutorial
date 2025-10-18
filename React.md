@@ -114,9 +114,9 @@ export default Counter;
 Here’s what happens when you click the “Add” button 👇
 
 - setCount(count + 1) updates the state -> count becomes 1
-- React re-renders the component -> creates a new `virtual DOM` showing '<h1>1</h2>'
-- React compares this new Virtual DOM with the old one '<h1>0</h1>'
-- React finds that only the text inside '<h1>' changed
+- React re-renders the component -> creates a new `virtual DOM` showing `<h1>1</h1>`
+- React compares this new Virtual DOM with the old one `<h1>0</h1>`
+- React finds that only the text inside <h1> changed
 - React updates only that part in the real DOM - not the whole page.
 
 #### Virtual DOM + Declarative = Power Combo
