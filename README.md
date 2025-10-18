@@ -6,7 +6,7 @@
 
           Flexbox is a way to arrage items into rows and columns. This items will flex (either grow or shrink) based on the certain rules we define. 
 
-
+ 
 #### display: flex;
 
 This turn the box into a flex box. By default the elements in then flex box will be align rowise. 

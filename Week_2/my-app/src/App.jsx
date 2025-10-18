@@ -3,26 +3,40 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Card from './components/Card'
+import List from './components/List'
+import Users from './components/Users'
+
+
+/**
+ * 
+ * @returns 
+ * 
+ * Create a React component called UserList that:
+Displays a list of users with their names and ages.
+Has a button that toggles between:
+Showing all users
+Showing only users aged 18 or above
+Includes a dropdown to sort users by age ascending or descending.
+ */
 function App() {
 
-  const [count, increment] = useState(0);
+  const persons = [
+    {
+      name: "Rahul",  age: 18
+    },
+    {
+      name: "Raj", age: 16
+    },
+    {
+      name: "Kunal", age: 20
+    },
+    
+  ]
 
-  const handleClick = () => {
-    alert('Event Handler Button Was Clicked');
-  }
 
   return (
     <>
-      <div>
-      <h1>counter {count}</h1>
-      <button onClick={() => increment(count + 1)}> Increment +</button>
-      <button onClick={() => increment(0)}> Reset +</button>
-      </div>
-      <Card person={{name:'Luffy', size:200}} />
-      <div>
-        <button onClick={() => alert('Inline Button was Clicked')}>Button 1</button>
-        <button onClick={handleClick}>Button 2</button>
-      </div>
+      <Users persons={persons} />
     </>
   )
 }
