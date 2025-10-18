@@ -555,6 +555,12 @@ useEffect(() => {
 
 ```
 
+| Class Component          | Functional Component                  |
+| ------------------------ | ------------------------------------- |
+| `componentDidMount()`    | `useEffect(() => {}, [])`             |
+| `componentDidUpdate()`   | `useEffect(() => {}, [dependencies])` |
+| `componentWillUnmount()` | Cleanup function in `useEffect`       |
+
 
 
 # super() and super(props)

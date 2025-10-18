@@ -10,6 +10,7 @@ import Controlled from './components/Controlled'
 import Uncontrolled from './components/Uncontrolled'
 import Add from './components/Add'
 import ClassComponent from './components/lifecycle/ClassComponent'
+import FunctionalComponent from './components/lifecycle/FunctionalComponent'
 
 
 /**
@@ -34,7 +35,8 @@ function App() {
       <Uncontrolled/>
       <List/> */}
       {/* <Add/> */}
-      <ClassComponent/>
+      {/* <ClassComponent/> */}
+      <FunctionalComponent/>
     </>
   )
 }
