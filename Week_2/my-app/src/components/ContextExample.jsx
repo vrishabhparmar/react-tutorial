@@ -9,12 +9,11 @@ function ContextExample() {
   return (
     <>
          <div>ContextExample</div>
-         <SimpleContext.Provider value={user}>
+         <SimpleContext.Provider value={{user, setUser}}>
             <Parent/>
          </SimpleContext.Provider>
 
          <button onClick={() => setUser('Vrishabh')}>Click me!</button>
-         <button onClick={() => setUser('')}>Click me!</button>
     </>
   )
 }
@@ -31,10 +30,14 @@ function Child()
 
 function GrandChild(){
     
-    const user = useContext(SimpleContext);
+    const {user, setUser} = useContext(SimpleContext);
 
     return (
-        <h1> {user} </h1>
+        <>
+         <h1> {user} </h1>
+        <button onClick={() => setUser('')}>Child Click me!</button>
+        </>
+       
     )
 }
 
