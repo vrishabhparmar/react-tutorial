@@ -11,6 +11,7 @@ import Uncontrolled from './components/Uncontrolled'
 import Add from './components/Add'
 import ClassComponent from './components/lifecycle/ClassComponent'
 import FunctionalComponent from './components/lifecycle/FunctionalComponent'
+import Timer from './components/Timer'
 
 
 /**
@@ -36,7 +37,8 @@ function App() {
       <List/> */}
       {/* <Add/> */}
       {/* <ClassComponent/> */}
-      <FunctionalComponent/>
+      {/* <FunctionalComponent/> */}
+      <Timer/>
     </>
   )
 }

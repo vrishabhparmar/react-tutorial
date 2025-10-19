@@ -7,16 +7,16 @@ It’s created by Facebook (Meta) and helps developers build fast, interactive, 
 
 ## Why do we need React?
 
-1. Faster and smoother apps
+1. `Faster and smoother apps`:
 React uses something called the Virtual DOM — a lightweight copy of the real DOM.
 When something changes on the page, React updates only what’s needed, not the whole page.
 ➡️ This makes the app fast and efficient.
 
-2. Reusable components
+2. `Reusable components`:
 You can create independent, reusable pieces of UI called components (like buttons, forms, cards, etc.).
 ➡️ This saves time and makes your code easier to manage.
 
-3. Declarative approach
+3. `Declarative approach`:
 You just describe what you want to see, and React takes care of how to render it.
 ➡️ This makes the code more readable and predictable.
 
@@ -56,28 +56,28 @@ function App() {
 
 ```
 
-Here, you’re not telling React how to change the button text.
+- Here, you’re not telling React how to change the button text.
 You’re simply saying:
 
 “If clicked is true → show ‘Clicked!’, else → show ‘Click me’.”
 
-React automatically updates the DOM when the state changes.
+- React automatically updates the DOM when the state changes.
 You describe what the UI should be, not how to change it.
 
 
 #### Why declarative is Better
 
-You describe what you want rather than you telling how to do it.
-React handles DOM updates rather than you manually update DOM 
-Easier to read and maintain rather than impleratove which is Harder to debug and modify
-Scales well for complex UIs while implerative gets messy as app grows
+- You describe what you want rather than you telling how to do it.
+- React handles DOM updates rather than you manually update DOM 
+- Easier to read and maintain rather than impleratove which is Harder to debug and modify
+- Scales well for complex UIs while implerative gets messy as app grows
 
 
-4. Strong community and ecosystem
+4. `Strong community and ecosystem`:
 React is widely used and supported.
 You get many libraries, tools, and tutorials, which makes development faster and easier.
 
-5. Supports modern app needs
+5. `Supports modern app needs`:
 React is perfect for Single Page Applications (SPAs) — where content updates dynamically without full page reloads.
 It can also be used for mobile apps via React Native.
 
@@ -121,16 +121,16 @@ Here’s what happens when you click the “Add” button 👇
 
 #### Virtual DOM + Declarative = Power Combo
 
-Declarative: You describe what the UI should look like
-Virtual DOM: React efficiently figures out what changed
-Together: You focus on what you want, React handles how
+- Declarative: You describe what the UI should look like
+- Virtual DOM: React efficiently figures out what changed
+- Together: You focus on what you want, React handles how
 
 # What is a SINGLE PAGE APPLICATION?
 
 A Single Page Application (SPA) is a web app that loads just one HTML page, and then dynamically updates its content as you interact with it — without reloading the entire page.
 
 
-How it works
+#### How it works
 
 When you first visit the site, the browser loads one HTML page (usually index.html) along with JavaScript and CSS.
 
@@ -168,7 +168,7 @@ React.createElement('h1', null, 'Hello, React!');
 So JSX just makes your code cleaner and easier to read.
 
 
-Why JSX is Used
+#### Why JSX is Used
 
 - Easier to write and visualize UI components.
 
@@ -308,10 +308,10 @@ function Greeting(props) {
 ```
 #### Key points about props
 
-Read-only: You cannot change props inside a child element
-Passed from parent to child: Data always flows one way
-Resuable components: Props let you use the same component with different data. 
-Accessed via: `props.propertyName` or directly via destructuring
+- Read-only: You cannot change props inside a child element
+- Passed from parent to child: Data always flows one way
+- Resuable components: Props let you use the same component with different data. 
+- Accessed via: `props.propertyName` or directly via destructuring
 
 
 # What is diff between props ans state?
@@ -333,7 +333,6 @@ Both terms describe how form inputs (like text boxes, checkboxes, etc.) are mana
 ### Controlled Component
 
 A controlled component is one where React controls the form data through state.
-
 
 That means:
 
@@ -417,7 +416,6 @@ Key points:
 # What is key attribute in React list?
 
 The key is a special attribute you give to elements inside a list when rendering them dynamically (using .map() or loops).
-
 
 It helps React identify which items have changed, been added, or removed — so React can update the UI efficiently.
 
@@ -511,7 +509,7 @@ Lifecycle methods:
 
 - componentDidMount() → runs after the component is rendered
 
-✅ Common use: Fetching data from an API
+- ✅Common use: Fetching data from an API
 
 2. Updating (when props or state change)
 
@@ -520,7 +518,8 @@ Lifecycle methods:
 - shouldComponentUpdate() → decide whether to re-render
 
 - componentDidUpdate() → runs after re-rendering happens
-✅ Common use: Responding to state or prop changes, API re-calls
+
+- ✅ Common use: Responding to state or prop changes, API re-calls
 
 3. Unmounting (when the component is removed from the DOM)
 
@@ -602,7 +601,111 @@ If you omit `super(props)` and try to use `this.props` inside the constructor, i
 
 
 
+# Explain diff between `useState` and `useEffect`
+
+1. ⚙️ 1. useState — For Storing Data (State Management)
+
+### What it does:
+
+- `useState` is used to store and update values that can change over time in your component (like user input, counter, API data, etc.).
+
+- When the state changes → React re-renders the component to show the new value.
+
+2. useEffect — For Side Effects (Actions outside UI)
+
+- `useEffect` is used to run side effects — actions that happen outside React’s normal rendering process.
+
+### Common Use Case 
+
+- Fetching data from an API
+- Working with timers
+- Subscribing/unsubscribing to events
+- Logging or manipulating the DOM
+
+```js
+useEffect(() => {
+  // Code to run after render
+  return () => {
+    // Cleanup (optional)
+  };
+}, [dependencies]);
+
+```
+
+Example with both together:
+
+```js
+
+import { useState, useEffect } from "react";
+
+function Timer(){
+
+    const [time, setTime] = useState(0);
+
+    useEffect(() => {
+
+        const interval = setInterval(() => {
+            setTime(time => time + 1);
+        },1000)
+
+        return () => {
+            console.log('Clean up run');
+            setTime(0);
+            clearInterval(interval);
+        }
+
+    },[])
+    
+    return (
+        <h1>Timer {time}</h1>
+    )
+}
+
+export default Timer;
+
+```
+
+# useState() hook internal working.
+
+- On the first render, React stores the initialState.
+- On subsequent renders, React retrieves the preserved value of state from memory instead of resetting it.
+- When setState is called, React:
+    1. Marks the component for re-rendering.
+    2. Re-renders it with the updated state.
+    3. Reuses previous state positions based on hook order (React tracks these using an internal linked list structure)
+
+# Closures
+
+A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives a function access to its outer scope. In JavaScript, closures are created every time a function is created, at function creation time.
+
+```js
+
+function init() {
+  var name = "Mozilla"; // name is a local variable created by init
+  function displayName() {
+    // displayName() is the inner function, that forms a closure
+    console.log(name); // use variable declared in the parent function
+  }
+  displayName();
+}
+init();
+
+```
+
+![Alt text](image-1.png)
+
+- Here you can see in the scopes that displayName has formed a closure is with init and it is using its local variable 
+which usually is destroyed after the function completely runs. 
 
 
 
+# Prop drilling
+
+Prop drilling in React refers to the process of passing data (via props) from a parent component down through multiple nested child components — even if some of those intermediate components don’t actually use the data themselves.
+
+### How to avoid Prop Drilling?
+
+1. Using React Context API
+
+- Context lets you share data globally across your component tree without explicitly passing it through every level.
 
