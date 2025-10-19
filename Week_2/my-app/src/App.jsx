@@ -12,6 +12,7 @@ import Add from './components/Add'
 import ClassComponent from './components/lifecycle/ClassComponent'
 import FunctionalComponent from './components/lifecycle/FunctionalComponent'
 import Timer from './components/Timer'
+import ContextExample from './components/ContextExample'
 
 
 /**
@@ -38,7 +39,8 @@ function App() {
       {/* <Add/> */}
       {/* <ClassComponent/> */}
       {/* <FunctionalComponent/> */}
-      <Timer/>
+      {/* <Timer/> */}
+      <ContextExample/>
     </>
   )
 }

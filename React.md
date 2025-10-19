@@ -709,3 +709,69 @@ Prop drilling in React refers to the process of passing data (via props) from a 
 
 - Context lets you share data globally across your component tree without explicitly passing it through every level.
 
+```js
+
+import React, { createContext, useContext, useState } from 'react'
+
+
+const SimpleContext = createContext();
+
+function ContextExample() {
+    const [user, setUser] = useState('');
+
+  return (
+    <>
+         <div>ContextExample</div>
+         <SimpleContext.Provider value={user}>
+            <Parent/>
+         </SimpleContext.Provider>
+
+         <button onClick={() => setUser('Vrishabh')}>Click me!</button>
+         <button onClick={() => setUser('')}>Click me!</button>
+    </>
+  )
+}
+
+function Parent()
+{
+    return <Child/>
+}
+
+function Child()
+{
+    return <GrandChild/>
+}
+
+function GrandChild(){
+    
+    const user = useContext(SimpleContext);
+
+    return (
+        <h1> {user} </h1>
+    )
+}
+
+export default ContextExample
+
+```
+
+Value Type                              |  Example                                  |  Description                                                                     
+----------------------------------------+-------------------------------------------+----------------------------------------------------------------------------------
+Primitive types                         |  value={"hello"},value={42},value={true}  |  Basic values shared between components.                                         
+Objects                                 |  value={{ user: "John", age: 25 }}        |  Most common approach — pack multiple related values together for easier sharing.
+Arrays                                  |  value={[count, setCount]}                |  Often used for sharing state tuples like[value, updater].                       
+Functions                               |  value={handleLogin}                      |  Lets child components call a function from the Provider.                        
+Combination (objects with functions)    |  value={{ user, setUser }}                |  Typical pattern for contexts managing data and its setter.                      
+Complex types (custom hooks, reducers)  |  value={{ state, dispatch }}              |  Used when combining Context with reducers or custom hooks.          
+
+
+2. Lifting state intelligently
+
+Keep state near components that need it, instead of always placing it high in the tree.
+
+3. Using state management libraries
+
+For large-scale applications, tools like Redux, Zustand, or Recoil store and manage global state, removing the need for deep prop passing.
+
+
+
