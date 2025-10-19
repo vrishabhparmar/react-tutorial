@@ -755,14 +755,15 @@ export default ContextExample
 
 ```
 
-Value Type                              |  Example                                  |  Description                                                                     
-----------------------------------------+-------------------------------------------+----------------------------------------------------------------------------------
-Primitive types                         |  value={"hello"},value={42},value={true}  |  Basic values shared between components.                                         
-Objects                                 |  value={{ user: "John", age: 25 }}        |  Most common approach — pack multiple related values together for easier sharing.
-Arrays                                  |  value={[count, setCount]}                |  Often used for sharing state tuples like[value, updater].                       
-Functions                               |  value={handleLogin}                      |  Lets child components call a function from the Provider.                        
-Combination (objects with functions)    |  value={{ user, setUser }}                |  Typical pattern for contexts managing data and its setter.                      
-Complex types (custom hooks, reducers)  |  value={{ state, dispatch }}              |  Used when combining Context with reducers or custom hooks.          
+| Value Type                            | Example                                  | Description                                                                 |
+|---------------------------------------|------------------------------------------|------------------------------------------------------------------------------|
+| Primitive types                       | `value={"hello"}`, `value={42}`, `value={true}` | Basic values shared between components.                                     |
+| Objects                               | `value={{ user: "John", age: 25 }}`      | Most common approach — pack multiple related values together for easier sharing. |
+| Arrays                                | `value={[count, setCount]}`              | Often used for sharing state tuples like `[value, updater]`.                |
+| Functions                             | `value={handleLogin}`                    | Lets child components call a function from the Provider.                    |
+| Combination (objects with functions)  | `value={{ user, setUser }}`              | Typical pattern for contexts managing data and its setter.                  |
+| Complex types (custom hooks, reducers) | `value={{ state, dispatch }}`            | Used when combining Context with reducers or custom hooks.                  |
+       
 
 
 2. Lifting state intelligently
