@@ -774,6 +774,176 @@ Keep state near components that need it, instead of always placing it high in th
 
 For large-scale applications, tools like Redux, Zustand, or Recoil store and manage global state, removing the need for deep prop passing.
 
+#  What are higher order components?
+
+Higher Order Components (HOCs) in React are an advanced pattern used to reuse component logic across multiple components without duplicating code. Essentially, a HOC is a function that takes a component as an argument and returns a new, enhanced component. This new component wraps the original one to add extra behavior, props, or state.
+
+```js
+const EnhancedComponent = higherOrderComponent(OriginalComponent);
+
+```
+
+The HOC doesn’t modify the original component directly. Instead, it returns a new component that renders the original but with additional features.
+
+### Why Use HOCs?
+
+They help you:
+
+- Reuse common logic (e.g., authentication, theming, data fetching).
+
+- Avoid repeated code across many components.
+
+- Add props or wrap functionality without changing the original component.
+
+- Abstract complex logic, keeping components clean and focused.
+
+```js
+import React from 'react'
+
+function WithBorder(WrappedComponent){
+    return function (){
+        return (
+            <div style={{border:'2px solid blue', padding:'10px'}}>
+                <WrappedComponent/>
+            </div>
+        )
+    }
+}
+
+function Greet()
+{
+    return <h1>Hello! From Higher order component</h1>
+}
+
+export const HigherOrder = WithBorder(Greet);
+
+
+```
+
+# Explain concepts of reconciliation in React?
+
+Reconciliation in React is the process React uses to update the actual DOM efficiently when your component's state or props change, ensuring the UI stays in sync with your application’s data.
+
+### What Happens During Reconciliation?
+
+1. Render Phase:
+
+React renders your components and builds a new virtual DOM tree, representing the UI after state or props changes.
+
+2. Diffing (Comparison) Algorithm:
+
+React compares this new virtual DOM tree with the previous one, node by node, to find what has changed.
+
+3. Minimal Updates Calculation:
+
+React identifies the smallest changes needed, such as updating text, changing attributes, adding or removing elements.
+
+4. Commit Phase:
+
+React applies these minimal changes efficiently to the real DOM, avoiding full re-renders and expensive DOM operations.
+
+### Core Principles of React's Diffing Algorithm
+
+- Element Type Changes: Replace old elements with new ones if types differ (e.g., <div> to <span>).
+
+- Key Comparison in Lists: Uses keys to track elements in lists to reorder, add, or remove items efficiently.
+
+- Props and State Check: If element types and keys are the same, only compare props and state to update nodes.
+
+
+# How does react portal works and when should they be used?
+
+React Portals allow you to render components outside the normal DOM hierarchy of their parent components while still keeping them logically within the React component tree.
+
+### How React Portals Work
+
+- Normally, React renders components inside their parent DOM node. Portals enable you to render a child component’s output into a different DOM node, elsewhere in the DOM tree.
+
+```html
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="portal-modal"></div> <!--For React Portol-->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+```
+Create a new DOM node as above. 
+
+```js
+
+import { useState } from 'react';
+import ReactDOM from 'react-dom'
+
+
+function Modal({children, onClose}){
+    return ReactDOM.createPortal(
+        <div style={styles.overlay}>
+            <div style={styles.modal}>
+                <button onClick={onClose}>X</button>
+                {children}
+            </div>
+
+        </div>
+        , document.getElementById('portal-modal')
+    );
+}
+
+const styles = {
+    overlay: {
+      position: "fixed",
+      top: 0, left: 0, right: 0, bottom: 0,
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      display: "flex", justifyContent: "center", alignItems: "center"
+    },
+    modal: {
+      background: "#fff",
+      padding: "20px",
+      borderRadius: "8px",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.2)"
+    }
+  };
+
+const PortalDemo = () => {
+    const [showModal, setShowModal] = useState(false);
+
+    return (
+        <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>React Portal Example</h1>
+      <button onClick={() => setShowModal(!showModal)}>Open Modal</button>
+
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <h2>This is a Modal!</h2>
+          <p>Rendered via React Portal ✨</p>
+        </Modal>
+      )}
+    </div>
+    )
+}  
+
+export default PortalDemo;
+
+```
+
+
+
+
+
+
+
+
+
+
 
 
 

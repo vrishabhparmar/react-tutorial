@@ -13,6 +13,8 @@ import ClassComponent from './components/lifecycle/ClassComponent'
 import FunctionalComponent from './components/lifecycle/FunctionalComponent'
 import Timer from './components/Timer'
 import ContextExample from './components/ContextExample'
+import { HigherOrder } from './components/HigherOrder'
+import PortalDemo from './components/PortalDemo'
 
 
 /**
@@ -40,7 +42,9 @@ function App() {
       {/* <ClassComponent/> */}
       {/* <FunctionalComponent/> */}
       {/* <Timer/> */}
-      <ContextExample/>
+      {/* <ContextExample/> */}
+      {/* <HigherOrder/> */}
+      <PortalDemo/>
     </>
   )
 }
