@@ -934,6 +934,120 @@ const PortalDemo = () => {
 export default PortalDemo;
 
 ```
+### Why Use Portals?
+
+Portals are especially useful when you want UI elements that:
+
+- Break out of parent CSS layout or stacking context
+
+- Must be rendered at a top-level DOM node for accessibility, positioning, or style reasons
+
+### Use Cases
+
+- Modals/Dialogs: Overlay windows often need to appear above other elements without being restricted by parent containers.
+- Tooltips: Floating UI hints that should appear outside container boundaries.
+
+- Dropdown menus: For positioning and style control outside scrollable parent containers.
+
+React Portals provide a first-class way to "escape" the parent DOM structure while maintaining React’s declarative and hierarchical benefits—ideal for UI elements that require special placement or layering.
+
+# Strict mode in react
+
+React Strict Mode is a wrapper component that helps you find potential problems in your React code during development.
+It doesn’t affect your app in production — it only runs in development mode to warn you about unsafe or deprecated code.
+
+```js
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+
+```
+
+### What Strict Mode Does?
+
+React Strict Mode does not render anything on the screen.Instead, it activates extra checks and warnings for its children.
+
+| Behavior                                              | What it does                                                                          | Why                                            |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **Detects unsafe lifecycles**                         | Finds deprecated lifecycle methods (like `componentWillMount`)                        | Helps prepare for future React versions        |
+| **Warns about legacy string refs**                    | Checks for old `ref="textInput"` usage                                                | Promotes safer `createRef` or `useRef`         |
+| **Warns about unexpected side effects**               | Calls certain functions **twice in dev mode** (like `useEffect`, `constructor`, etc.) | Ensures your code is pure and side-effect-free |
+| **Checks for deprecated APIs**                        | Alerts you if you’re using outdated APIs                                              | Keeps your code future-proof                   |
+| **Detects inconsistent behavior with reusable state** | Helps you prepare for React features like concurrent rendering                        | Makes components more resilient                |
+
+# React Fiber
+
+React Fiber is a complete rewrite of React’s reconciliation algorithm, introduced in React 16.
+It’s what gives React its speed, flexibility, and smooth rendering capabilities today.
+
+        👉 Fiber = The new way React updates the UI efficiently.
+
+### What is “Reconciliation”?
+
+    Figuring out what changed in the virtual DOM. and updating the real DOM efficiently.
+
+Earlier (before Fiber), React used a stack-based algorithm. It worked fine for small apps, but had major problems with large or complex UI updates.
+
+### Before Fiber
+
+How it worked:
+
+- The entire component tree was processed recursively (synchronously).
+- Once started, React had to finish rendering everything before updating the screen.
+- This made the UI feel laggy if a large component tree was being updated.
+
+Problem:
+
+- No ability to pause, resume, or prioritize work.
+- React could block the main thread and make apps feel unresponsive.
+
+### ⚡ Enter React Fiber
+
+React Fiber introduced a new architecture that:
+
+- ✅ breaks rendering work into small chunks
+- ✅ assigns priorities to different updates
+- ✅ can pause and resume work
+- ✅ can reuse parts of the tree efficiently
+
+
+### Core Idea
+
+Each element in the React tree is now represented as a Fiber node —
+a plain JS object that stores information like:
+
+- type of component
+
+- props
+
+- state
+
+- return pointer (to parent fiber)
+
+- child & sibling fibers
+
+Think of it as React’s own linked list of components that can be processed one at a time.
+
+| Feature                  | Old Stack Reconciliation | React Fiber                                 |
+| ------------------------ | ------------------------ | ------------------------------------------- |
+| **Architecture**         | Recursive call stack     | Linked list of “fiber” nodes                |
+| **Scheduling**           | Synchronous (blocking)   | Asynchronous (interruptible)                |
+| **Prioritization**       | None                     | High/low priority tasks handled differently |
+| **Work Splitting**       | All-or-nothing render    | Incremental rendering in chunks             |
+| **Pausing/Resuming**     | Not possible             | Can pause and resume rendering              |
+| **Animation Support**    | Janky                    | Smooth (supports 60fps animations)          |
+| **Recovery from Errors** | Harder                   | Introduced Error Boundaries                 |
+
+
 
 
 
