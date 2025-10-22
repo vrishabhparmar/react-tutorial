@@ -1047,6 +1047,166 @@ Think of it as React’s own linked list of components that can be processed one
 | **Animation Support**    | Janky                    | Smooth (supports 60fps animations)          |
 | **Recovery from Errors** | Harder                   | Introduced Error Boundaries                 |
 
+# How does reacr determine how to re-render a component?
+
+- React decides to re-render a component when its state, props, or context change.
+
+- When that happens, React calls the component function again (or the render() method in class components) to produce a new Virtual DOM tree.
+
+- Then, React uses a process called Reconciliation, powered by the Fiber architecture, to compare the new Virtual DOM with the previous one — this is known as the diffing algorithm.
+
+React checks:
+
+1. If a component’s type is the same, it just updates the changed props.
+2. If the type is different, React destroys the old node and mounts a new one.
+3. For lists, React uses the key attribute to efficiently match and reorder elements.
+
+Once React figures out what’s changed, it performs a minimal update to the real DOM — not the entire page — and finally runs any side effects (useEffect, componentDidUpdate, etc.) in the commit phase.
+
+- “Under the hood, React Fiber breaks rendering into small units of work and assigns priorities. This lets React pause or resume rendering when needed, making updates smoother — especially in large applications.”
+
+# How does React avoid unnecessary re-renders?
+
+React avoids unnecessary re-renders using a combination of shallow comparison and optimization techniques.
+
+By default, React re-renders a component whenever its state, props, or context change.
+
+However, if the output of the render doesn’t actually change, React can skip re-rendering using optimization features like:
+
+1. React.memo() (Functional Components)
+2. PureComponent (Class Components)
+3. shouldComponentUpdate() (Manual Control)
+4. Proper use of key in lists
+
+React’s Fiber architecture also helps avoid unnecessary work by splitting rendering into units, assigning priorities, and skipping updates for components not affected by state or prop changes.
+
+
+# What is batching in React? and changed after React 18?
+
+- Batching in React is like putting together a bunch of small tasks and doing them all at once instead of one by one. Imagine if every time you changed something your app needed to repaint, React waited until all changes were ready and then did one single repaint. This saves time and makes your app faster.
+
+- Before React 18, React only grouped (batched) updates that happened inside event handlers, like button clicks. But updates from things like timers, promises, or async calls would cause multiple repaints — slowing your app down.
+
+- With React 18’s automatic batching, React now groups updates from anywhere together — like from events, promises, timeouts — and only repaints once. So even if you change multiple things quickly or asynchronously, React combines those into one efficient update.
+
+# Diff between useMemo and useCallback
+
+# What is lazy loading? How Suspence work and what are some use cases beyond lazy loading?
+
+Lazy loading is a performance optimization technique in React where we load components or data only when they are needed, rather than loading everything upfront.
+
+This helps reduce the initial bundle size and improves app load time — especially useful for large applications.
+
+### 🧩 1. Lazy Loading Components
+
+- React.lazy();
+- Suspence
+
+```js
+import React, { Suspense, lazy } from "react";
+
+const Profile = lazy(() => import("./Profile"));
+
+function App() {
+  return (
+    <div>
+      <h1>Home Page</h1>
+      <Suspense fallback={<div>Loading profile...</div>}>
+        <Profile />
+      </Suspense>
+    </div>
+  );
+}
+
+
+```
+
+React Suspense is like a special helper that lets your app show a "loading" screen or fallback UI when some part of your app is waiting for something — like data from a server or a component that hasn’t loaded yet.
+
+### How it works in simple terms:
+
+- You wrap a part of your component tree in a `<Suspense>` component and provide a fallback UI, often a loading spinner or message.
+- When a child component is not ready (for example, it’s waiting on data or code to load), React automatically hides that part and shows the fallback UI.
+- As soon as the child is ready, React swaps the fallback with the actual content, making the loading experience seamless and smooth.
+
+### Real use cases beyond lazy loading of components:
+
+- `Data fetching`: When fetching API data inside Suspense-enabled frameworks, instead of showing empty content or manual loading states, Suspense displays a fallback until the data arrives.
+- `Coordinated loading`: You can wrap several components in Suspense so they all show the fallback together and reveal themselves at once when all data is ready — avoiding flashing partial content.
+- `Complex UI states`: For example, loading user profiles along with related data like posts and comments, you can coordinate these using Suspense boundaries.
+- `Handling nested loading states`: With multiple Suspense components nested, you can control which parts of the UI show loading indicators and when, enhancing perceived performance and user experience.
+
+# How do you optimize large list in React?
+
+To optimize large lists in React and ensure smooth performance and user experience, several strategies and techniques are commonly used:
+
+### 1. Windowing or Virtualization
+
+- Render only the visible portion of the list plus a small buffer.
+
+### 2. Use key Prop Correctly
+
+- Assign stable and unique keys to list items (e.g., IDs).
+- This helps React minimize unnecessary re-renders by correctly matching items on updates.
+
+### 3. Avoid Anonymous Functions in Render
+
+- When passing callbacks like onClick, avoid inline functions or arrow functions directly in JSX as it causes unnecessary re-renders.
+- Use `useCallback` hook or class methods to memoize functions.
+
+### 4. Memoize List Items
+
+- Wrap individual list items with React.memo to prevent re-rendering unless their props change.
+
+### 5. Lazy Loading / Pagination
+
+- Load and render items in chunks rather than all at once.
+
+- Use infinite scroll or pagination to reduce the initial load time.
+
+# vite vs create-react-app
+
+| Feature                 | Create React App (CRA)     | Vite                                   |
+| ----------------------- | -------------------------- | -------------------------------------- |
+| **Creator**             | Facebook (Meta)            | Evan You (creator of Vue.js)           |
+| **Bundler**             | Webpack                    | ESBuild (for dev) + Rollup (for build) |
+| **Language**            | Node.js-based (JavaScript) | Go-based (super fast)                  |
+| **Default React Setup** | Built-in                   | Requires `vite-plugin-react`           |
+| **TypeScript Support**  | Yes (template-based)       | Yes (built-in)                         |
+
+### ⚡ Speed
+
+- Vite is much faster than CRA — because it uses ESBuild written in Go for lightning-fast dev server startup and hot reloads.
+
+- CRA (Webpack) rebuilds the entire bundle on every change — slow for large apps.
+
+### 🧩 How They Work Internally
+
+1. 🧱 CRA (Webpack)
+- Bundles the entire app before serving.
+- Every change triggers a rebuild of the bundle.
+- Uses Babel + Webpack pipeline.
+- Great for small/medium apps but slows down with scale.
+
+2. ⚙️ Vite
+- Uses native ES modules (ESM) in the browser.
+- Only bundles files on-demand (when imported).
+- During dev: uses ESBuild (extremely fast).
+- During build: uses Rollup for optimized production bundle.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
