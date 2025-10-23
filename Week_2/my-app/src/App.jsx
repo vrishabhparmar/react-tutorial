@@ -15,6 +15,7 @@ import Timer from './components/Timer'
 import ContextExample from './components/ContextExample'
 import { HigherOrder } from './components/HigherOrder'
 import PortalDemo from './components/PortalDemo'
+import Parent from './components/UseCallbackDemo'
 
 
 /**
@@ -44,7 +45,8 @@ function App() {
       {/* <Timer/> */}
       {/* <ContextExample/> */}
       {/* <HigherOrder/> */}
-      <PortalDemo/>
+      {/* <PortalDemo/> */}
+      <Parent/>
     </>
   )
 }
