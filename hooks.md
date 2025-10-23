@@ -128,6 +128,188 @@ function ExpensiveComponent({ numbers }) {
 
 # useCallback
 
+useCallback() is a React Hook that helps you optimize performance by memoizing functions —
+so React doesn’t recreate the same function every time your component re-renders.
+
+It’s especially useful when you pass functions as props to child components that use React.memo() (because otherwise they’d re-render unnecessarily).
+
+```js
+
+import React, { useCallback, useState} from 'react'
+
+
+function GrandChild({data}){
+
+    console.log('Grand Child rendered');
+    return <p>{data}</p>
+}
+
+const MemoGrandChild = React.memo(GrandChild)
+
+function Child({onClick}){
+
+    console.log('Child rendered');
+    return <button onClick={onClick}>Child Button</button>
+}
+
+const MemoChild = React.memo(Child)
+
+
+function Parent(){
+
+    const [count, setCount] = useState(0);
+    const [data, setData] = useState('Fetching Data');
+
+
+    const handleCount = useCallback(() => {
+        setCount(count + 1)
+    },[])
+
+    const handleData = useCallback(() => {
+        setData('Data Fetched')
+    }, [])
+    
+
+    console.log('Parent Rendered');
+
+
+    return(
+
+        <div>
+            <MemoGrandChild data={count} /> 
+            <MemoChild onClick={handleCount}/>
+            <MemoGrandChild data={data} />
+            <MemoChild onClick={handleData}/>
+        </div>
+    )
+}
+
+export default Parent;
+
+
+```
+
+Here the Child will rerender only if the its props will change which is `noClick handler`. 
+
+# useReducer
+
+
+```js
+
+import { useReducer } from "react";
+
+const initialValue = 0;
+const reducer = (state, action) => {
+    switch(action){
+        case 'increment': 
+            return state + 1
+        case 'decrement': 
+            return state - 1
+        case 'reset': 
+            return initialValue
+        default:
+            return state;
+    }
+}
+
+const UseReducerDemo = () => {
+    const [count, dispatch] = useReducer(reducer, initialValue)
+
+    return (
+        <div>
+            <h1>Use Reducer Demo: {count}</h1>
+            <button onClick={() => dispatch('increment')}>Increment</button>
+            <button onClick={() => dispatch('decrement')}>Decrement</button>
+            <button onClick={() => dispatch('reset')}>Reset</button>
+
+        </div>
+    )
+}
+
+export default UseReducerDemo;
+
+```
+
+# useLayout
+
+The React hook useLayoutEffect is very similar to the more commonly used useEffect but differs mainly in when it runs during the component lifecycle.
+
+### What is useLayoutEffect?
+
+- It’s a hook you run after React has updated the DOM, but before the browser has painted (or visually updated) the screen.
+
+- This means it blocks the browser from painting until your effect code finishes running.
+
+### Why is this useful?
+
+- Sometimes you need to make immediate changes to the layout or measurements of elements on the page to avoid flickering or visual glitches.
+
+- For example, if you render a tooltip or popup and want to measure its size and position it correctly before the user sees it, useLayoutEffect ensures this happens smoothly without a visible flicker.
+
+### How is it different from useEffect?
+
+- useEffect runs asynchronously after the browser has painted.
+
+- useLayoutEffect runs synchronously before the paint.
+
+- Because useLayoutEffect blocks painting until complete, it can cause performance impacts if misused.
+
+### When to use useLayoutEffect?
+
+- When you need to interact with the DOM to measure or modify layout before the user sees anything.
+
+# useImeparativeHandle
+
+# debouncing
+
+debounce is a performance optimization technique used in React (and JavaScript in general) to limit how often a function runs — especially for actions triggered by rapid events (like typing or scrolling).
+
+```js
+import React, { useMemo, useState } from 'react'
+
+function DebounceDemo() {
+
+    const [val, setVal] = useState('');
+
+    function handleChange(e){
+        setVal(e.target.value)
+        console.log(e.target.value);
+    }
+
+    function debounce(func, wait){
+        let timerId; // timer id which we need to use to clear the setTimeOut function
+        return (...args) => {
+            clearTimeout(timerId)
+            timerId = setTimeout(
+                () => {
+                    func(...args)
+                }, 
+                wait
+            )
+        }
+    }
+
+const handleInputDebounce = useMemo(() => debounce(handleChange, 1000), []) 
+
+  return (
+    <div>
+        <h1>Debounce Demo: {val}</h1>
+        <input type='text' onChange={
+             handleInputDebounce
+        } val={val} />
+    </div>
+  )
+}
+
+export default DebounceDemo
+
+```
+
+# throttle
+
+“Run the function at most once every X milliseconds, no matter how many times it’s called.”
+
+
 
 
 

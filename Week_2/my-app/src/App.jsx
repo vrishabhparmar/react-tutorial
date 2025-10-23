@@ -16,6 +16,9 @@ import ContextExample from './components/ContextExample'
 import { HigherOrder } from './components/HigherOrder'
 import PortalDemo from './components/PortalDemo'
 import Parent from './components/UseCallbackDemo'
+import UseReducerDemo from './components/UseReducerDemo'
+import DebounceDemo from './components/DebounceDemo'
+import ThrottleDemo from './components/ThrottleDemo'
 
 
 /**
@@ -46,7 +49,10 @@ function App() {
       {/* <ContextExample/> */}
       {/* <HigherOrder/> */}
       {/* <PortalDemo/> */}
-      <Parent/>
+      {/* <Parent/> */}
+      {/* <UseReducerDemo/> */}
+      {/* <DebounceDemo/> */}
+      <ThrottleDemo/>
     </>
   )
 }

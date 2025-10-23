@@ -1,12 +1,17 @@
-import React, {useState} from 'react'
+import React, { useCallback, useState} from 'react'
+
+
+function GrandChild({data}){
+
+    console.log('Grand Child rendered');
+    return <p>{data}</p>
+}
+
+const MemoGrandChild = React.memo(GrandChild)
 
 function Child({onClick}){
 
-    
-    function someCalulation(){
-        console.log('Child render');
-    }
-    
+    console.log('Child rendered');
     return <button onClick={onClick}>Child Button</button>
 }
 
@@ -16,18 +21,28 @@ const MemoChild = React.memo(Child)
 function Parent(){
 
     const [count, setCount] = useState(0);
+    const [data, setData] = useState('Fetching Data');
 
-    function handleClick(){
+
+    const handleCount = useCallback(() => {
         setCount(count + 1)
-        console.log('Parent handle click');
-    }
+    },[])
+
+    const handleData = useCallback(() => {
+        setData('Data Fetched')
+    }, [])
+    
+
+    console.log('Parent Rendered');
+
 
     return(
 
         <div>
-            <p>Count: {count}</p>
-            <button onClick={handleClick}>Parent Button</button>
-            <MemoChild onClick={handleClick}/>
+            <MemoGrandChild data={count} /> 
+            <MemoChild onClick={handleCount}/>
+            <MemoGrandChild data={data} />
+            <MemoChild onClick={handleData}/>
         </div>
     )
 }

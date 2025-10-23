@@ -161,7 +161,7 @@ function sum(accumulator, element) {
 
 console.log(addAll);
 
-// Call back
+// Nested Call back
 // It is a situation in javascript where callbacks within other callbacks ot a degree
 // where the code becomes difficult to read. 
 // Old pattern to handle asyshcronous functions 
