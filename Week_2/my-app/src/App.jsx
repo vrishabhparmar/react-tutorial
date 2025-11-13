@@ -19,6 +19,7 @@ import Parent from './components/UseCallbackDemo'
 import UseReducerDemo from './components/UseReducerDemo'
 import DebounceDemo from './components/DebounceDemo'
 import ThrottleDemo from './components/ThrottleDemo'
+import CounterApp from './Beginner/Counter'
 
 
 /**
@@ -37,22 +38,7 @@ function App() {
   
   return (
     <>
-      {/* <Users persons={persons} /> */}
-      {/* <Counter/> */}
-      {/* <Controlled/>
-      <Uncontrolled/>
-      <List/> */}
-      {/* <Add/> */}
-      {/* <ClassComponent/> */}
-      {/* <FunctionalComponent/> */}
-      {/* <Timer/> */}
-      {/* <ContextExample/> */}
-      {/* <HigherOrder/> */}
-      {/* <PortalDemo/> */}
-      {/* <Parent/> */}
-      {/* <UseReducerDemo/> */}
-      {/* <DebounceDemo/> */}
-      <ThrottleDemo/>
+      <CounterApp/>
     </>
   )
 }
