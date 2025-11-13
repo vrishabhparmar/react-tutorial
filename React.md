@@ -69,7 +69,7 @@ You describe what the UI should be, not how to change it.
 
 - You describe what you want rather than you telling how to do it.
 - React handles DOM updates rather than you manually update DOM 
-- Easier to read and maintain rather than impleratove which is Harder to debug and modify
+- Easier to read and maintain rather than implerative which is Harder to debug and modify
 - Scales well for complex UIs while implerative gets messy as app grows
 
 
